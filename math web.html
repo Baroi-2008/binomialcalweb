@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srijon's Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            max-width: 200px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO SRIJON'S CALCULATOR</h1>
+    <div class="input-group">
+        <input type="number" id="a" placeholder="Enter the value of a" step="any">
+    </div>
+    <div class="input-group">
+        <input type="number" id="b" placeholder="Enter the value of b" step="any">
+    </div>
+    <div class="input-group">
+        <input type="number" id="c" placeholder="Enter the value of c" step="any">
+    </div>
+    <button onclick="calculate()">Calculate Roots</button>
+    <div id="result">Results will appear here</div>
+
+    <script>
+        function calculate() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) {
+                resultDiv.textContent = 'Please enter valid numbers (a cannot be 0).';
+                return;
+            }
+
+            const d = Math.pow(b, 2) - (4 * a * c);
+            if (d > 0) {
+                const root1 = (-b + Math.sqrt(d)) / (2 * a);
+                const root2 = (-b - Math.sqrt(d)) / (2 * a);
+                resultDiv.textContent = `Congrats! Your roots are: ${root1.toFixed(4)}, ${root2.toFixed(4)}`;
+            } else if (d === 0) {
+                const root = (-b + Math.sqrt(d)) / (2 * a);
+                resultDiv.textContent = `WOW! Both roots are: ${root.toFixed(4)}`;
+            } else {
+                resultDiv.textContent = 'LOL!!! Give proper values (discriminant < 0).';
+            }
+        }
+    </script>
+</body>
+</html>
